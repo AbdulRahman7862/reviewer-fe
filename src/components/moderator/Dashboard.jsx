@@ -1,6 +1,6 @@
 import React from 'react'
-import BusinessStatsCard from './BusinessStatsCard'
-import RegistrationAnalytics from './RegistrationAnalytics'
+import BusinessStatsCard from '../common/BusinessStatsCard'
+import RegistrationAnalytics from '../common/RegistrationAnalytics'
 
 const Dashboard = () => {
   return (
