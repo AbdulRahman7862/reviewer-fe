@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+select::-ms-expand {
+    display: none;
+}
+  
