@@ -9,7 +9,7 @@ export default function ModeratorSidebar() {
         { name: "Dashboard", icon: <FaHome />, key: "Dashboard" },
         { name: "Business", icon: <FaBriefcase />, key: "Business" }
     ];
-
+    
     return (
         <div className="flex">
             {/* Mobile Navbar */}

@@ -19,6 +19,10 @@ import AdminBusinessPage from './pages/admin/AdminBusinessPage';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
 import AdminLeaderBoardPage from './pages/admin/AdminLeaderBoardPage';
 import AdminManageRoles from './pages/admin/AdminManageRoles';
+import SupportStaffLayout from './components/staffDashboard/supportStaffLayout';
+import StaffDashboard from './pages/staffDashboard/staffDashboard';
+import Issues from './components/staffDashboard/Issues';
+import Users from './components/staffDashboard/StaffUsers';
 
 
 const App = () => {
@@ -56,6 +60,14 @@ const App = () => {
             <Route path='users' element={<AdminUsersPage />} />
             <Route path='leaderboard' element={<AdminLeaderBoardPage />} />
             <Route path='manage-roles' element={<AdminManageRoles />} />
+        </Route>
+
+        {/* Support Staff Dashboard with Sidebar */}
+        <Route path='/supportStaff-dashboard' element={<SupportStaffLayout />}>
+          <Route path='dashboard' element={<StaffDashboard />} />
+          <Route path='issues' element={<Issues />} />
+          <Route path='users' element={<Users />} />
+          <Route path='logout' element={<Logout />} />
         </Route>
 
       </Routes>
