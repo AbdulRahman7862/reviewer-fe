@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useTheme } from '../ThemeContext';
 import rating from "../assets/rating.png";
 import people from "../assets/people.png";
 import Background from "../assets/Background.png";
 import facebook from "../assets/facebook.png";
+import { useState } from 'react';
 
 const Otp = () => {
-  // 1) Track dark/light mode
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleDarkMode } = useTheme();
 
   // 2) Track language selection
   const [language, setLanguage] = useState("English");
-
-  // Toggle dark/light mode
-  const toggleDarkMode = () => {
-    setIsDark((prev) => !prev);
-  };
 
   // Handle language change
   const handleLanguageChange = (e) => {
@@ -89,8 +85,7 @@ const Otp = () => {
           {/* THEME TOGGLE */}
           <button
             onClick={toggleDarkMode}
-            className="border border-gray-300 px-3 py-1 rounded-md 
-                       hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="border border-gray-300 px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 hover:cursor-pointer"
           >
             {isDark ? SunIcon : MoonIcon}
           </button>

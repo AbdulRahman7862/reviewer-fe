@@ -1,44 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useTheme } from '../../ThemeContext';
 
 import registerbusiness from "../../assets/business/registerbusiness.svg";
 import BusinessCard from '../../components/business/BusinessCard';
+import { useState } from 'react';
 
 const BusinessRegistration = () => {
-  const [isDark, setIsDark] = useState(false); // Example state for dark mode
-  const [language,setLanguage] = useState("");
+  const { isDark } = useTheme();
+  const [language, setLanguage] = useState("");
 
   return (
-    <div>
+    <div className={`min-h-screen transition-colors ${isDark ? "bg-[#1B2431] text-white" : "bg-white text-black"}`}>
       <header className="flex justify-between items-center p-5">
-        <p className="text-gray-500 cursor-pointer">{"< "} Back</p>
+        <p className={`${isDark ? "text-gray-300" : "text-gray-500"} cursor-pointer`}>{"< "} Back</p>
 
         <div className="flex items-center gap-4">
           <div className="relative">
             <select
-              className="
-                bg-transparent
+              className={`
+                border 
+                border-gray-300 
+                rounded-lg 
+                p-3 
+                w-full 
+                focus:outline-[#4461F2]
                 appearance-none
-                outline-none
-                border-none
-                p-2
-                pr-8
                 cursor-pointer
-                text-gray-400
-              "
+                pr-8
+                ${isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"}
+              `}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
             >
               <option value="English">English</option>
               <option value="Arabic">Arabic</option>
             </select>
-            <span
-              className="
-                pointer-events-none 
-                absolute 
-                right-2 
-                top-1/2 
-                -translate-y-1/2 
-                text-sm
-              "
-            >
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
               ▼
             </span>
           </div>
@@ -50,7 +47,7 @@ const BusinessRegistration = () => {
               rounded-xl 
               w-[130px] 
               h-[42px] 
-              ${isDark ? "text-black" : "text-white"}
+              text-white
             `}
           >
             Sign in
@@ -78,11 +75,10 @@ const BusinessRegistration = () => {
               title={"Build Your Credibility with reviews"}
               description={"Reviewer stars and content are proven to convert at higher <br> rates than those of competitors"}
             />
-
           </div>
         </div>
         <div className='flex flex-col gap-2'>
-          <label htmlFor="">Account Information</label>
+          <label className={`${isDark ? "text-white" : "text-black"}`}>Account Information</label>
           <input
             type="text"
             placeholder={
@@ -90,7 +86,9 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Enter Your First Name"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
           <input
@@ -100,7 +98,9 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Enter Your Last Name"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
           <input
@@ -110,7 +110,9 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Enter Your Number"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
           <input
@@ -120,15 +122,26 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Enter Your Password"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
-          <label htmlFor="">Business Information</label>
-          <select name="" id="">
-            <option value="">Business Category</option>
-            <option value="">opt 1 </option>
-            <option value="">opt 2</option>
-          </select>
+          <label className={`${isDark ? "text-white" : "text-black"}`}>Business Information</label>
+          <div className="relative">
+            <select
+              className={`border border-gray-300 rounded-lg p-3 w-full focus:outline-[#4461F2] appearance-none cursor-pointer pr-8 ${
+                isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+              }`}
+            >
+              <option value="">Business Category</option>
+              <option value="">opt 1</option>
+              <option value="">opt 2</option>
+            </select>
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+              ▼
+            </span>
+          </div>
 
           <input
             type="text"
@@ -137,7 +150,9 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Business Name"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
           <input
@@ -147,25 +162,41 @@ const BusinessRegistration = () => {
                 ? "أدخل بريدك الإلكتروني"
                 : "Website Link"
             }
-            className="border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2]"
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
           />
 
-          <label htmlFor="">Verify Business</label>
-          <select name="" id="">
-            <option value="">Business Category</option>
-            <option value="">opt 1 </option>
-            <option value="">opt 2</option>
-          </select>
+          <label className={`${isDark ? "text-white" : "text-black"}`}>Verify Business</label>
+          <div className="relative">
+            <select
+              className={`border border-gray-300 rounded-lg p-3 w-full focus:outline-[#4461F2] appearance-none cursor-pointer pr-8 ${
+                isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+              }`}
+            >
+              <option value="">Business Category</option>
+              <option value="">opt 1</option>
+              <option value="">opt 2</option>
+            </select>
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
+              ▼
+            </span>
+          </div>
 
-          <label htmlFor="">Business verification Certificate</label>
-          <input type="file" />
+          <label className={`${isDark ? "text-white" : "text-black"}`}>Business verification Certificate</label>
+          <input 
+            type="file" 
+            className={`border border-gray-300 rounded-lg p-3 focus:outline-[#4461F2] ${
+              isDark ? "bg-[#323D4E] text-white border-gray-600" : "bg-white text-black"
+            }`}
+          />
 
           <button
-              onClick={() => {}}
-              className="bg-[#4461F2] text-white rounded-xl py-3 mt-2 font-semibold hover:bg-blue-600 transition-colors"
-            >
-              {language === "Arabic" ? "تسجيل الدخول" : "Register"}
-            </button>
+            onClick={() => {}}
+            className="bg-[#4461F2] text-white rounded-xl py-3 mt-2 font-semibold hover:bg-blue-600 transition-colors"
+          >
+            {language === "Arabic" ? "تسجيل الدخول" : "Register"}
+          </button>
         </div>
       </div>
     </div>

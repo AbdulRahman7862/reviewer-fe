@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './ThemeContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Otp from './pages/Otp';
@@ -24,54 +25,52 @@ import StaffDashboard from './pages/staffDashboard/staffDashboard';
 import Issues from './components/staffDashboard/Issues';
 import Users from './components/staffDashboard/StaffUsers';
 
-
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route path='/' element={<Landing />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/sign-up' element={<Signup />} />
-        <Route path='/otp' element={<Otp />} />
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path='/' element={<Landing />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/sign-up' element={<Signup />} />
+          <Route path='/otp' element={<Otp />} />
 
-        {/* Business Routes */}
-        <Route path='/business-onboarding' element={<Onboarding />} />
-        <Route path='/register-business' element={<BusinessRegistration />} />
-        <Route path='/business-dashboard' element={<BusinessDashboard />} />
+          {/* Business Routes */}
+          <Route path='/business-onboarding' element={<Onboarding />} />
+          <Route path='/register-business' element={<BusinessRegistration />} />
+          <Route path='/business-dashboard' element={<BusinessDashboard />} />
 
-        {/* Moderator Authentication */}
-        <Route path='/moderator-login' element={<ModeratorLogin />} />
-        
-        {/* Moderator Dashboard with Sidebar */}
-        <Route path='/moderator-dashboard' element={<ModeratorLayout />}>
-          <Route path='dashboard' element={<Dashboard />} />
-          <Route path='business' element={<Business />} />
-          <Route path='logout' element={<Logout />} />
-        </Route>
+          {/* Moderator Authentication */}
+          <Route path='/moderator-login' element={<ModeratorLogin />} />
+          
+          {/* Moderator Dashboard with Sidebar */}
+          <Route path='/moderator-dashboard' element={<ModeratorLayout />}>
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='business' element={<Business />} />
+            <Route path='logout' element={<Logout />} />
+          </Route>
 
+          {/* Admin Auth */}
+          <Route path='/admin-login' element={<AdminLogin />} />
+          <Route path='/admin-dashboard' element={<AdminLayout />} >
+              <Route path='dashboard' element={<AdminDashboard />} />
+              <Route path='business' element={<AdminBusinessPage />} />
+              <Route path='users' element={<AdminUsersPage />} />
+              <Route path='leaderboard' element={<AdminLeaderBoardPage />} />
+              <Route path='manage-roles' element={<AdminManageRoles />} />
+          </Route>
 
-
-        {/* Admin Auth */}
-        <Route path='/admin-login' element={<AdminLogin />} />
-        <Route path='/admin-dashboard' element={<AdminLayout />} >
-            <Route path='dashboard' element={<AdminDashboard />} />
-            <Route path='business' element={<AdminBusinessPage />} />
-            <Route path='users' element={<AdminUsersPage />} />
-            <Route path='leaderboard' element={<AdminLeaderBoardPage />} />
-            <Route path='manage-roles' element={<AdminManageRoles />} />
-        </Route>
-
-        {/* Support Staff Dashboard with Sidebar */}
-        <Route path='/supportStaff-dashboard' element={<SupportStaffLayout />}>
-          <Route path='dashboard' element={<StaffDashboard />} />
-          <Route path='issues' element={<Issues />} />
-          <Route path='users' element={<Users />} />
-          <Route path='logout' element={<Logout />} />
-        </Route>
-
-      </Routes>
-    </Router>
+          {/* Support Staff Dashboard with Sidebar */}
+          <Route path='/supportStaff-dashboard' element={<SupportStaffLayout />}>
+            <Route path='dashboard' element={<StaffDashboard />} />
+            <Route path='issues' element={<Issues />} />
+            <Route path='users' element={<Users />} />
+            <Route path='logout' element={<Logout />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 

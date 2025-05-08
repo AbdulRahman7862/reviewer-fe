@@ -1,5 +1,6 @@
 // Landing.js
-import React, { useState } from "react";
+import React from "react";
+import { useTheme } from "../ThemeContext";
 import landingbg from "../assets/landingbg.png";
 import LandingHeader from "../components/LandingHeader";
 import People from "../assets/People.png";
@@ -17,7 +18,7 @@ import { LuSend } from "react-icons/lu";
 import CustomFooter from "../components/CustomFooter";
 
 const Landing = () => {
-    const [isDark, setIsDark] = useState(false);
+    const { isDark, setIsDark } = useTheme();
 
     // Conditionally use the background image only if we're NOT in dark mode
     const bgStyle = !isDark
@@ -30,7 +31,7 @@ const Landing = () => {
         : {}; // No background when isDark is true
 
     return (
-        <div className="bg-white">
+        <div className={`min-h-screen transition-colors ${isDark ? "bg-[#1B2431]" : "bg-white"}`}>
             <div
                 className={`
                     relative
@@ -39,7 +40,6 @@ const Landing = () => {
                     overflow-hidden
                     overflow-y-auto
                     ${isDark ? "bg-[#1B2431]" : "bg-white"}
-                   
                 `}
                 style={bgStyle}
             >
@@ -145,8 +145,7 @@ const Landing = () => {
                 </div>
             </div>
 
-
-            <div className={`${isDark ? "bg-[#323D4E] text-white" : "bg-[#F2F9FF] text-black"} mx-auto left-[10rem]  absolute  mt-5 h-[400px] w-[80%] rounded-[20px] flex justify-around items-center `}>
+            <div className={`${isDark ? "bg-[#323D4E] text-white" : "bg-[#F2F9FF] text-black"} mx-auto left-[10rem] absolute mt-5 h-[400px] w-[80%] rounded-[20px] flex justify-around items-center`}>
                 <div className="flex flex-col gap-2 justify-start items-center">
                     <h1 className="font-bold text-2xl">Empower others with your voice.</h1>
                     <p>Share your genuine experiences on ------- and help <br /> build a trusted community.</p>
@@ -156,7 +155,7 @@ const Landing = () => {
                 </div>
             </div>
 
-            <div className="flex justify-around items-center gap-2 mt-[30rem]">
+            <div className={`flex justify-around items-center gap-2 mt-[30rem] ${isDark ? "text-white" : "text-black"}`}>
                 <div className="flex flex-col justify-between items-start pl-2 gap-3">
                     <h1 className="font-bold text-2xl">What Customer says about <br />
                         <span className="text-[#4169E1]">Businesses !</span></h1>
@@ -177,10 +176,9 @@ const Landing = () => {
                 <div className="w-[503.95px] h-[473.32px]">
                     <img src={testimonials} alt="testimonials" className="w-full h-full object-contain" />
                 </div>
-
             </div>
 
-            <div className="bg-[#4169E1] w-[80%] h-[20rem] mt-40 flex justify-between items-center mx-auto rounded-lg relative">
+            <div className={`bg-[#4169E1] w-[80%] h-[20rem] mt-40 flex justify-between items-center mx-auto rounded-lg relative ${isDark ? "text-white" : "text-black"}`}>
                 <div className="pl-10 flex flex-col gap-5">
                     <h1 className="font-bold text-white text-2xl">Looking to grow your business?</h1>
                     <p className="text-white">Strengthen your reputation with real reviews on <br /> -------.</p>
@@ -199,8 +197,7 @@ const Landing = () => {
                 </div>
             </div>
 
-
-            <div className="w-full bg-[#F2F9FF] mt-5 h-[180px] flex justify-center items-center gap-5">
+            <div className={`w-full ${isDark ? "bg-[#323D4E]" : "bg-[#F2F9FF]"} mt-5 h-[180px] flex justify-center items-center gap-5`}>
                 <p>Newsletter</p>
                 {/* Input Container */}
                 <div className="relative">
@@ -218,7 +215,6 @@ const Landing = () => {
             </div>
 
             <CustomFooter />
-
         </div>
     );
 };

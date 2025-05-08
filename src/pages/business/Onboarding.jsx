@@ -1,8 +1,10 @@
 import React from 'react'
 import onboardingbusiness from "../../assets/onboardingbusiness.png";
 import { FaArrowRight } from "react-icons/fa6";
+import { useTheme } from '../../ThemeContext';
 
 const Onboarding = () => {
+    const { isDark } = useTheme();
     return (
         <div className='flex justify-center items-center flex-col w-full'>
             <img src={onboardingbusiness} alt="on boarding " className='w-[918.88px] h-[527px] object-contain mr-[20rem]' />

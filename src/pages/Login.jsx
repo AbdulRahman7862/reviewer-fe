@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useTheme } from '../ThemeContext';
 import rating from "../assets/rating.png";
 import people from "../assets/people.png";
 import Background from "../assets/Background.png";
 import facebook from "../assets/facebook.png";
 
 const Login = () => {
-  // 1) Track dark/light mode
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleDarkMode } = useTheme();
 
   // 2) Track language selection
   const [language, setLanguage] = useState("English");
@@ -14,11 +14,6 @@ const Login = () => {
   // Handle language change
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
-  };
-
-  // Toggle dark/light mode
-  const toggleDarkMode = () => {
-    setIsDark((prev) => !prev);
   };
 
   // Icons
@@ -70,10 +65,7 @@ const Login = () => {
   return (
     <div
       dir={language === "Arabic" ? "rtl" : "ltr"}
-      className={
-        (isDark ? "bg-black text-white" : "bg-white text-black") + 
-        " min-h-screen transition-colors"
-      }
+      className={`min-h-screen transition-colors ${isDark ? "bg-[#1B2431]" : "bg-white"}`}
     >
       {/* HEADER */}
       <header className="flex justify-between items-center px-10 py-5">

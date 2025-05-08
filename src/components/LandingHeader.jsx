@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import rating from "../assets/rating.png";
 // 1) Import icons from react-icons
 import { FaMoon, FaSun } from "react-icons/fa";
+import { useTheme } from "../ThemeContext";
 
-const LandingHeader = ({ isDark, setIsDark }) => {
+const LandingHeader = () => {
+  const { isDark, setIsDark } = useTheme();
   // For language selection
   const [language, setLanguage] = useState("English");
 
