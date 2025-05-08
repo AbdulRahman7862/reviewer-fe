@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../ThemeContext';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const categories = [
   'Shopping and fashion',
@@ -19,7 +21,6 @@ const businessData = {
       category: 'Shopping and fashion',
       website: 'www.nike.com',
       color: 'bg-yellow-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'Adidas',
@@ -29,21 +30,19 @@ const businessData = {
       reviews: 1200,
       rev: 1200,
       category: 'Shopping and fashion',
-      website: 'www.adidas.com',
+      website: 'www.nike.com',
       color: 'bg-gray-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'Puma',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Puma_Logo.svg',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Puma_logo.svg',
       rank: 3,
       rating: 4.8,
       reviews: 500,
       rev: 500,
       category: 'Shopping and fashion',
-      website: 'www.puma.com',
+      website: 'www.nike.com',
       color: 'bg-amber-700',
-      dateJoined: '17/10/2024',
     },
   ],
   'Food and Beverage': [
@@ -57,7 +56,6 @@ const businessData = {
       category: 'Food and Beverage',
       website: 'www.starbucks.com',
       color: 'bg-yellow-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'McDonalds',
@@ -69,7 +67,6 @@ const businessData = {
       category: 'Food and Beverage',
       website: 'www.mcdonalds.com',
       color: 'bg-gray-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'KFC',
@@ -81,7 +78,6 @@ const businessData = {
       category: 'Food and Beverage',
       website: 'www.kfc.com',
       color: 'bg-amber-700',
-      dateJoined: '17/10/2024',
     },
   ],
   'Technology': [
@@ -95,7 +91,6 @@ const businessData = {
       category: 'Technology',
       website: 'www.apple.com',
       color: 'bg-yellow-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'Samsung',
@@ -107,7 +102,6 @@ const businessData = {
       category: 'Technology',
       website: 'www.samsung.com',
       color: 'bg-gray-400',
-      dateJoined: '17/10/2024',
     },
     {
       name: 'Sony',
@@ -119,14 +113,15 @@ const businessData = {
       category: 'Technology',
       website: 'www.sony.com',
       color: 'bg-amber-700',
-      dateJoined: '17/10/2024',
     },
   ],
 };
 
 const barHeights = [120, 180, 90]; // px for 2nd, 1st, 3rd
 
-export default function AdminLeaderBoardPage() {
+const BusinessLeaderBoardPage = () => {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const { isDark } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [animate, setAnimate] = useState(false);
@@ -140,11 +135,13 @@ export default function AdminLeaderBoardPage() {
   }, [selectedCategory]);
 
   return (
-    <div className={`transition-colors min-h-screen ${isDark ? 'bg-[#1B2431] text-white' : 'bg-white text-black'}`}>
-      <div className="p-6 max-w-6xl mx-auto">
+    <div className={`transition-colors min-h-screen ${isDark ? 'bg-[#1B2431] text-white' : 'bg-white text-black'} ${isRTL ? 'text-right' : 'text-left'}`}>
+      <div className="p-6 max-w-5xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">{t('business.leaderboardPage.title')}</h1>
+
         {/* Category Dropdown */}
         <div className="flex items-center gap-2 mb-8">
-          <h2 className="text-lg font-bold">
+          <h2 className="text-xl font-bold">
             <span className="relative inline-block">
               <select
                 className="bg-transparent text-white font-bold text-xl appearance-none pr-8 cursor-pointer"
@@ -164,37 +161,37 @@ export default function AdminLeaderBoardPage() {
           {/* 2nd Place */}
           <div className="flex flex-col items-center">
             <img src={businesses[1].logo} alt={businesses[1].name} className="w-12 h-12 rounded-full bg-white object-contain mb-2" />
-            <span className="mb-1 text-sm font-semibold text-gray-300">{businesses[1].name}</span>
+            <span className="mb-1 text-sm font-semibold">{businesses[1].name}</span>
             <div
               className={`transition-all duration-700 ${businesses[1].color} rounded-t-xl flex flex-col items-center justify-end`}
-              style={{ height: animate ? barHeights[0] : 0, width: 110 }}
+              style={{ height: animate ? barHeights[0] : 0, width: 80 }}
             >
-              <span className="mt-2 text-base text-gray-900 font-bold">2nd</span>
-              <span className="mb-2 text-base text-gray-900">{businesses[1].rev} Rev</span>
+              <span className="mt-2 text-xs text-gray-900 font-bold">2nd</span>
+              <span className="mb-2 text-xs text-gray-900">{businesses[1].rev} Rev</span>
             </div>
           </div>
           {/* 1st Place */}
           <div className="flex flex-col items-center">
             <img src={businesses[0].logo} alt={businesses[0].name} className="w-12 h-12 rounded-full bg-white object-contain mb-2" />
-            <span className="mb-1 text-sm font-semibold text-gray-300">{businesses[0].name}</span>
+            <span className="mb-1 text-sm font-semibold">{businesses[0].name}</span>
             <div
               className={`transition-all duration-700 ${businesses[0].color} rounded-t-xl flex flex-col items-center justify-end`}
-              style={{ height: animate ? barHeights[1] : 0, width: 110 }}
+              style={{ height: animate ? barHeights[1] : 0, width: 80 }}
             >
-              <span className="mt-2 text-base text-gray-900 font-bold">1st</span>
-              <span className="mb-2 text-base text-gray-900">{businesses[0].rev} Rev</span>
+              <span className="mt-2 text-xs text-gray-900 font-bold">1st</span>
+              <span className="mb-2 text-xs text-gray-900">{businesses[0].rev} Rev</span>
             </div>
           </div>
           {/* 3rd Place */}
           <div className="flex flex-col items-center">
             <img src={businesses[2].logo} alt={businesses[2].name} className="w-12 h-12 rounded-full bg-white object-contain mb-2" />
-            <span className="mb-1 text-sm font-semibold text-gray-300">{businesses[2].name}</span>
+            <span className="mb-1 text-sm font-semibold">{businesses[2].name}</span>
             <div
               className={`transition-all duration-700 ${businesses[2].color} rounded-t-xl flex flex-col items-center justify-end`}
-              style={{ height: animate ? barHeights[2] : 0, width: 110 }}
+              style={{ height: animate ? barHeights[2] : 0, width: 80 }}
             >
-              <span className="mt-2 text-base text-gray-900 font-bold">3rd</span>
-              <span className="mb-2 text-base text-gray-900">{businesses[2].rev} Rev</span>
+              <span className="mt-2 text-xs text-gray-900 font-bold">3rd</span>
+              <span className="mb-2 text-xs text-gray-900">{businesses[2].rev} Rev</span>
             </div>
           </div>
         </div>
@@ -202,18 +199,15 @@ export default function AdminLeaderBoardPage() {
           {businesses[0].name} Is On Top Of The Leader Board This Week
         </div>
         {/* Leaderboard Table */}
-        <div className="overflow-x-hidden rounded-xl">
-          <table className="w-full min-w-[900px] bg-[#22304A] rounded-xl text-sm">
+        <div className="overflow-x-auto rounded-xl">
+          <table className="w-full min-w-[700px] bg-[#22304A] rounded-xl">
             <thead>
               <tr className="text-left text-gray-400 text-sm">
-                <th className="py-3 px-4">S. No</th>
-                <th className="py-3 px-4">Business Name</th>
-                <th className="py-3 px-4">Rank</th>
-                <th className="py-3 px-4">Reviews</th>
-                <th className="py-3 px-4">Rating</th>
-                <th className="py-3 px-4">Category</th>
-                <th className="py-3 px-4">Website</th>
-                <th className="py-3 px-4">Date Joined</th>
+                <th className="py-3 px-4">{t('business.leaderboardPage.rank')}</th>
+                <th className="py-3 px-4">{t('business.leaderboardPage.business')}</th>
+                <th className="py-3 px-4">{t('business.leaderboardPage.rating')}</th>
+                <th className="py-3 px-4">{t('business.leaderboardPage.reviews')}</th>
+                <th className="py-3 px-4">{t('business.leaderboardPage.score')}</th>
               </tr>
             </thead>
             <tbody>
@@ -221,17 +215,12 @@ export default function AdminLeaderBoardPage() {
                 <tr key={b.name} className="border-t border-[#1B2431] text-white text-sm">
                   <td className="py-3 px-4">{i + 1}</td>
                   <td className="py-3 px-4 flex items-center gap-2">
-                    <img src={b.logo} alt={b.name} className="w-6 h-6 rounded-full bg-white object-contain" />
+                    <img src={b.logo} alt={b.name} className="w-7 h-7 rounded-full bg-white object-contain" />
                     {b.name}
                   </td>
-                  <td className="py-3 px-4">{b.rank}</td>
-                  <td className="py-3 px-4">{b.reviews}</td>
                   <td className="py-3 px-4">{b.rating}</td>
-                  <td className="py-3 px-4">{b.category}</td>
-                  <td className="py-3 px-4">
-                    <a href={`https://${b.website}`} target="_blank" rel="noopener noreferrer" className="underline text-blue-300">{b.website}</a>
-                  </td>
-                  <td className="py-3 px-4">{b.dateJoined}</td>
+                  <td className="py-3 px-4">{b.reviews}</td>
+                  <td className="py-3 px-4">{b.rev}</td>
                 </tr>
               ))}
             </tbody>
@@ -240,4 +229,6 @@ export default function AdminLeaderBoardPage() {
       </div>
     </div>
   );
-} 
+};
+
+export default BusinessLeaderBoardPage;

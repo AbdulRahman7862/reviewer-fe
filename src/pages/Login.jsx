@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../ThemeContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import rating from "../assets/rating.png";
 import people from "../assets/people.png";
 import Background from "../assets/Background.png";
@@ -7,14 +8,7 @@ import facebook from "../assets/facebook.png";
 
 const Login = () => {
   const { isDark, toggleDarkMode } = useTheme();
-
-  // 2) Track language selection
-  const [language, setLanguage] = useState("English");
-
-  // Handle language change
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-  };
+  const { language, toggleLanguage } = useLanguage();
 
   // Icons
   const MoonIcon = (
@@ -100,7 +94,7 @@ const Login = () => {
                 cursor-pointer
               "
               value={language}
-              onChange={handleLanguageChange}
+              onChange={toggleLanguage}
             >
               <option value="English">English</option>
               <option value="Arabic">Arabic</option>

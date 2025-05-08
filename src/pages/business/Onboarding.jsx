@@ -7,7 +7,7 @@ const Onboarding = () => {
     const { isDark } = useTheme();
     return (
         <div className='flex justify-center items-center flex-col w-full'>
-            <img src={onboardingbusiness} alt="on boarding " className='w-[918.88px] h-[527px] object-contain mr-[20rem]' />
+            <img src={onboardingbusiness} alt="on boarding " className='w-[918.88px] h-[527px] object-contain mx-auto' />
             <div className='flex justify-center items-center flex-col gap-3'>
                 <h1 className='font-bold text-4xl'>More than 500+ Businesses are <br /> registered on reviewer. </h1>
                 <p>"Join us today and unlock endless possibilities"</p>

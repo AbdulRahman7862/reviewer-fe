@@ -1,6 +1,7 @@
 // Landing.js
 import React from "react";
 import { useTheme } from "../ThemeContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import landingbg from "../assets/landingbg.png";
 import LandingHeader from "../components/LandingHeader";
 import People from "../assets/People.png";
@@ -19,6 +20,7 @@ import CustomFooter from "../components/CustomFooter";
 
 const Landing = () => {
     const { isDark, setIsDark } = useTheme();
+    const { language } = useLanguage();
 
     // Conditionally use the background image only if we're NOT in dark mode
     const bgStyle = !isDark
@@ -209,7 +211,7 @@ const Landing = () => {
                     <input
                         type="text"
                         placeholder="Your email"
-                        className={`${isDark ? "bg-[#323D4E] text-white" : "bg-white text-gray-400"} w-[425px] h-[48px] rounded-[13.32px] pl-4`}
+                        className={`${isDark ? "bg-[#323D4E] text-white border-[#4A5568]" : "bg-white text-gray-400 border-gray-300"} w-[425px] h-[48px] rounded-[13.32px] pl-4 border-2 focus:outline-none focus:border-[#4169E1]`}
                     />
                 </div>
             </div>
